@@ -1,54 +1,28 @@
-/*-----------------------------------------------------------------------------------
-
-    Theme Name: Stark
-    Description: The Portfolio Onepage Template
-    Author: ui-themez
-    Author URI: http://themeforest.net/user/ui-themez
-    Version: 1.0
-
------------------------------------------------------------------------------------*/
-
-
-$(function() {
+$(function () {
 
     "use strict";
 
     var wind = $(window);
-    
 
-
-/* ----------------------------------------------------------------
-                [ Sections Background Image With Data ]
------------------------------------------------------------------*/
 
     var pageSection = $(".bg-img, section");
-    pageSection.each(function(indx){
-        
-        if ($(this).attr("data-background")){
+    pageSection.each(function (indx) {
+
+        if ($(this).attr("data-background")) {
             $(this).css("background-image", "url(" + $(this).data("background") + ")");
         }
     });
 
-
-/* ----------------------------------------------------------------
-                [ Owl-Carousel ]
------------------------------------------------------------------*/
-
     // Testimonials owlCarousel
     $('.testimonials .owl-carousel').owlCarousel({
-        loop:true,
+        loop: true,
         items: 1,
         margin: 10,
-        mouseDrag:false,
-        autoplay:true,
-        smartSpeed:500,
+        mouseDrag: false,
+        autoplay: true,
+        smartSpeed: 500,
         dotsEach: true
     });
-
-
-/* ----------------------------------------------------------------
-                [ magnificPopup ]
------------------------------------------------------------------*/
 
     $('.gallery').magnificPopup({
         delegate: '.popimg',
@@ -57,11 +31,6 @@ $(function() {
             enabled: true
         }
     });
-
-
-/* ----------------------------------------------------------------
-                [ countUp ]
------------------------------------------------------------------*/
 
     $('.numbers .count').countUp({
         delay: 10,
@@ -74,40 +43,27 @@ $(function() {
 
 // === window When Loading === //
 
-$(window).on("load",function (){
+$(window).on("load", function () {
 
     var wind = $(window);
 
-/* ----------------------------------------------------------------
-                [ Preloader ]
------------------------------------------------------------------*/ 
-
     $(".loading").fadeOut(500);
-
-
-/* ----------------------------------------------------------------
-                [ Progress Bar ]
------------------------------------------------------------------*/
 
     $(".resume .content").on('scroll', function () {
         $(".skill-progress .progres").each(function () {
-            var bottom_of_object = 
-            $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window = 
-            $(window).scrollTop() + $(window).height();
+            var bottom_of_object =
+                $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window =
+                $(window).scrollTop() + $(window).height();
             var myVal = $(this).attr('data-value');
-            if(bottom_of_window > bottom_of_object) {
+            if (bottom_of_window > bottom_of_object) {
                 $(this).css({
-                  width : myVal
+                    width: myVal
                 });
             }
         });
     });
 
-
-/* ----------------------------------------------------------------
-                [ isotope Portfolio ( Masonery Style ) ]
------------------------------------------------------------------*/
 
     $('.gallery').isotope({
         // options
@@ -119,7 +75,7 @@ $(window).on("load",function (){
     });
 
     // filter items on button click
-    $('.filtering').on( 'click', 'span', function() {
+    $('.filtering').on('click', 'span', function () {
 
         var filterValue = $(this).attr('data-filter');
 
@@ -127,16 +83,12 @@ $(window).on("load",function (){
 
     });
 
-    $('.filtering').on( 'click', 'span', function() {
+    $('.filtering').on('click', 'span', function () {
 
         $(this).addClass('active').siblings().removeClass('active');
 
     });
 
-
-/* ----------------------------------------------------------------
-                [ contact form validator ]
------------------------------------------------------------------*/
 
     $('#contact-form').validator();
 
@@ -148,8 +100,7 @@ $(window).on("load",function (){
                 type: "POST",
                 url: url,
                 data: $(this).serialize(),
-                success: function (data)
-                {
+                success: function (data) {
                     var messageAlert = 'alert-' + data.type;
                     var messageText = data.message;
 
